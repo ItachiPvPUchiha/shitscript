@@ -1,34 +1,25 @@
-_G.theme = "Dark"
-local library = loadstring(game:HttpGet('https://raw.githubusercontent.com/Enxquity/bad-script-yes/main/shit%20library'))()
-
-local baseUi = library.createNewUI("SBR Script", true)
-local cuntTab = library.NewTab(baseUi, "Utilities", true)
-
-local speedEvent;
-local jumpEvent;
-
-cuntTab:NewToggle("Speed", false, function()
-    speedEvent = game:GetService("RunService").RenderStepped:Connect(function()
-        local speed = library:GetBarFill("Speed")
-        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed;
-    end)
- end, function()
-    if speedEvent then speedEvent:Disconnect() end
-end)
-
-cuntTab:NewDragBar("Speed", 500, 16, function() --set 500 to the max speed
-    --legit do nothing;
-end)
-
-cuntTab:NewToggle("Jump", false, function()
-    jumpEvent = game:GetService("RunService").RenderStepped:Connect(function()
-        local jump = library:GetBarFill("Jump")
-        game.Players.LocalPlayer.Character.Humanoid.JumpPower = jump;
-    end)
-end, function()
-    if jumpEvent then jumpEvent:Disconnect() end
-end)
-
-cuntTab:NewDragBar("Jump", 500, 50, function()
-    --legit do nothing;
-end)
+local me = "YourNameHere" -- You don't get jumpscared.
+while wait() do
+for i,v in pairs(game.Players:GetPlayers()) do
+       if v.Name ~= me and not v.PlayerGui:FindFirstChild("Screamer") and v:FindFirstChild("PlayerGui") then
+               spawn(function()
+                       local newgui = Instance.new("ScreenGui",v.PlayerGui)
+                       newgui.Name = "Screamer"
+                       local newimage = Instance.new("ImageLabel",newgui)
+                       newimage.Image = "rbxassetid://142410803"
+                       newimage.Size = UDim2.new(1,0,1,0)
+                       local s = Instance.new("Sound",newgui)
+                       s.SoundId = "rbxassetid://166038742"
+                       s.Volume = 1
+                       s.Looped = true
+                       s:Play()
+                       print("Screamed "..v.Name)
+                       while wait() do
+                               newimage.ImageColor3 = Color3.new(math.random(1,255)/255,math.random(1,255)/255,math.random(1,255)/255)
+                               wait()
+                               newimage.ImageColor3 = Color3.new(1,1,1)
+                       end
+               end)
+       end
+end
+end
